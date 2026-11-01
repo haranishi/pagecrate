@@ -1,0 +1,43 @@
+{
+  "$comment": [
+    "公開前の点検（scripts/hygiene.mjs、npm run hygiene）の設定。コミットする。NGワード・識別子・メールなどの値は書かない。",
+    "nonPublicDirs：公開しないディレクトリ。公開用スナップショットの道具も同じ一覧を読む（除外の一覧の唯一の正本）。",
+    "allow：ファイル単位の例外。path のファイルの中でだけ、kinds の種類を許す。only があるときは、その形に合うものだけを許す。reason は必須。",
+    "kinds に書ける種類：local-path（ローカルのパス）、ng-word（個人NGワード）、account-id（アカウントの識別子）、email（メールアドレス）、media-metadata（画像・動画の付帯情報）。秘密（secret）はどのファイルでも許せない。"
+  ],
+  "nonPublicDirs": [".agent-harness/", "research/", ".kiro/"],
+  "allow": [
+    {
+      "path": "src/lib/operator-info.ts",
+      "kinds": ["email", "ng-word"],
+      "reason": "運営者の名称（屋号）と問い合わせ用のメールを公開する唯一の場所（本人の決定）。秘密・パス・識別子は許さない"
+    },
+    {
+      "path": "LICENSE",
+      "kinds": ["ng-word"],
+      "reason": "MIT の著作権者として、運営者の名称（屋号）を載せる場所（本人の決定）。公開用スナップショットの道具が書き出すファイルで、リポジトリの木には無い"
+    },
+    {
+      "path": "package-lock.json",
+      "kinds": ["email"],
+      "reason": "npm が書く依存の公開情報で、第三者の作者が非推奨の告知に書いた連絡先が入る（運営者の情報ではない）"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "kinds": ["email"],
+      "reason": "第三者の作者がライセンスの文と著作権の行に書いた連絡先を、そのまま写したもの（運営者の情報ではない。写さないとライセンスの条件を満たせない）。scripts/make-public-snapshot.mjs が生成する"
+    },
+    {
+      "path": "AGENTS.md",
+      "kinds": ["local-path"],
+      "only": ["^[/]Users[/](?:<[^>/]+>|\\$\\{?USER\\}?|you|USERNAME)(?:[/]|$)", "^[A-Za-z]:[\\\\/]+Users[\\\\/]+(?:<[^>\\\\/]+>|%USERNAME%|USERNAME)(?:[\\\\/]|$)"],
+      "reason": "指示ファイルは追跡して公開する（next dev が書く）。説明のための見本のパス（<名前> などの形）だけを許し、本物のホームのパスは失敗にする"
+    },
+    {
+      "path": "CLAUDE.md",
+      "kinds": ["local-path"],
+      "only": ["^[/]Users[/](?:<[^>/]+>|\\$\\{?USER\\}?|you|USERNAME)(?:[/]|$)", "^[A-Za-z]:[\\\\/]+Users[\\\\/]+(?:<[^>\\\\/]+>|%USERNAME%|USERNAME)(?:[\\\\/]|$)"],
+      "reason": "指示ファイルは追跡して公開する（AGENTS.md を読み込むだけ）。説明のための見本のパス（<名前> などの形）だけを許し、本物のホームのパスは失敗にする"
+    }
+  ]
+}

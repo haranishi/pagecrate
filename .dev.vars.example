@@ -1,0 +1,16 @@
+# Test-only values for the local Workers preview (npm run preview:worker). Copy to .dev.vars (git-ignored).
+# Production values are Workers Secrets and never belong in this file.
+PAGECRATE_PUBLIC_ORIGIN=http://127.0.0.1:8787
+PAGECRATE_DAILY_RENDER_CAP=5
+PAGECRATE_PAUSED=0
+PAGECRATE_BLOCKED_HOSTS=blocked.example
+# Cloudflare's published Turnstile test keys (always pass).
+# In the official documentation's example, the answer for the test keys has hostname=localhost and action=test, which
+# is not expected to match this app's checks (the host of the public origin above, and action=scan). Scanning a real
+# site in the local preview is therefore expected to end in BOT_CHECK_FAILED (unconfirmed). The demo, and E2E tests that
+# replace the bot-check script and API, are not affected. Check real sites on a Worker separate from production, with
+# real keys.
+PAGECRATE_TURNSTILE_SITEKEY=1x00000000000000000000AA
+PAGECRATE_TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+# Local-only dummy (at least 32 bytes). Never reuse it anywhere real.
+PAGECRATE_TICKET_SECRET=local-only-dummy-0000000000000000000000000000000000

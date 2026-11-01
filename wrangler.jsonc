@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pagecrate",
+  "main": "worker.ts",
+  "compatibility_date": "2026-09-19",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "preview_urls": false,
+  // Names only. Values live in Workers Secrets (production) or .dev.vars (local preview, see .dev.vars.example).
+  "secrets": {
+    "required": [
+      "PAGECRATE_PUBLIC_ORIGIN", "PAGECRATE_DAILY_RENDER_CAP", "PAGECRATE_PAUSED", "PAGECRATE_BLOCKED_HOSTS",
+      "PAGECRATE_TICKET_SECRET", "PAGECRATE_TURNSTILE_SECRET", "PAGECRATE_TURNSTILE_SITEKEY"
+    ]
+  },
+  // Per-client limits, approximate per Cloudflare location. namespace_id must be unique within the account.
+  "ratelimits": [
+    { "name": "SCAN_LIMITER", "namespace_id": "8101", "simple": { "limit": 3, "period": 60 } },
+    { "name": "PREVIEW_LIMITER", "namespace_id": "8102", "simple": { "limit": 60, "period": 60 } },
+    { "name": "DOWNLOAD_LIMITER", "namespace_id": "8103", "simple": { "limit": 6, "period": 60 } }
+  ],
+  // One global counter of renders per UTC day (counts only). SQLite-backed classes are available on the Free plan.
+  "durable_objects": { "bindings": [{ "name": "BUDGET_GATE", "class_name": "BudgetGate" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["BudgetGate"] }],
+  "assets": {
+    "directory": ".open-next/assets", "binding": "ASSETS",
+    "run_worker_first": ["/tour/pagecrate-tour.mp4", "/tour/pagecrate-tour.webm"]
+  },
+  "browser": { "binding": "BROWSER" },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "pagecrate" }],
+  // Logs off: src/ prints nothing, but an unexpected exception would stay in Workers Logs for days with its request URL, which can carry a ticket (a source URL).
+  "observability": { "enabled": false }
+}

@@ -1,0 +1,5 @@
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+# Static files are served without the Worker, so next.config.ts headers never reach them: nosniff goes on here.
+/*
+  X-Content-Type-Options: nosniff

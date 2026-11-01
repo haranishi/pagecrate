@@ -1,0 +1,16 @@
+/* The share bar sits in a footer: quiet, never in the way of the main buttons. */
+.share { display: grid; gap: 8px; }
+.title { color: var(--ink); font-size: 12px; font-weight: 600; line-height: 1.6; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.action { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--teal); font-size: 12px; font-weight: 600; line-height: 1; text-decoration: none; cursor: pointer; }
+.action:hover { border-color: var(--teal); }
+.action:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.action > svg { width: 14px; height: 14px; }
+.note { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.result { min-height: 1.8em; color: var(--teal); font-size: 12px; font-weight: 600; line-height: 1.8; }
+.result:empty { min-height: 0; }
+
+@media (max-width: 620px) {
+  .title, .note, .result { font-size: 14px; }
+  .action { padding: 0 12px; font-size: 14px; }
+}

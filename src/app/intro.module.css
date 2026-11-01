@@ -1,0 +1,776 @@
+.page {
+  color: var(--ink);
+}
+
+.hero {
+  padding-block: 64px 65px;
+  text-align: center;
+}
+
+.edition {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .06em;
+}
+
+.edition > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+.headline {
+  margin-top: 22px;
+  font-size: clamp(38px, 5.4vw, 62px);
+  line-height: 1.47;
+  font-weight: 650;
+  letter-spacing: -.055em;
+}
+
+.headline > span {
+  display: block;
+  color: var(--ink);
+}
+
+.headline > span + span {
+  color: var(--teal);
+}
+
+.heroDescription {
+  margin-top: 21px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: .025em;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 28px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  min-height: 52px;
+  padding: 14px 22px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 150ms, border-color 150ms;
+}
+
+.primaryButton {
+  color: #fff;
+  background: var(--teal);
+}
+
+.primaryButton:hover {
+  background: var(--teal-dark);
+}
+
+.videoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.videoLink svg {
+  width: 16px;
+  height: 16px;
+  transform: rotate(90deg);
+}
+
+.heroNote {
+  margin-top: 15px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* While page scans are paused (page.tsx): the replaced note is body text, dark and 14px on every width, not the quiet
+   small print of an open site's note (UI scoring of the paused screens, round 1). */
+.heroPause {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.tour {
+  scroll-margin-top: 32px;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin-bottom: 13px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: .16em;
+}
+
+.sectionHeading h2 {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -.04em;
+}
+
+.recordingNote {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-bottom: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.recordingNote svg {
+  width: 16px;
+  height: 16px;
+}
+
+.videoFrame {
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid #d7dfd3;
+  border-radius: 15px;
+  background: #e9eee3;
+  box-shadow: 0 14px 40px -22px #22332930;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 7px;
+  background: #e1e7d9;
+  object-fit: contain;
+}
+
+/* Keyboard focus on the video: the ring goes around its frame, outside, where it is never cut off by the frame's
+   padding (5px on phones) and sits on the page's own colour. Browsers without :has() ring the video itself. */
+.video:focus-visible {
+  outline: 3px solid #37897e;
+  outline-offset: 2px;
+}
+
+@supports selector(:has(*)) {
+  .video:focus-visible {
+    outline: none;
+  }
+
+  .videoFrame:has(> .video:focus-visible) {
+    outline: 3px solid #37897e;
+    outline-offset: 3px;
+  }
+}
+
+.videoSupport {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 12px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.videoSupport > p,
+.videoSupport a,
+.videoSupport > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.videoSupport > p {
+  color: var(--muted);
+}
+
+.videoSupport svg {
+  width: 15px;
+  height: 15px;
+}
+
+.videoSupport > div {
+  gap: 20px;
+}
+
+.videoSupport a {
+  min-height: 32px;
+  color: var(--teal);
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+
+.videoSupport a:hover {
+  text-decoration: underline;
+}
+
+.videoError {
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border: 1px solid #d8cba9;
+  border-radius: 7px;
+  color: #6c4d28;
+  background: #f7eedb;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.transcript {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 20px;
+  margin-top: 7px;
+  padding: 23px 0;
+  border-block: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.transcriptLabel {
+  font-weight: 600;
+}
+
+.transcriptNote {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stepsSection {
+  margin-top: 83px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding-top: 23px;
+  border-top: 1px solid #cfd7c9;
+}
+
+.stepTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .12em;
+}
+
+.stepTop svg {
+  width: 21px;
+  height: 21px;
+}
+
+.step h3 {
+  margin-bottom: 12px;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.6;
+}
+
+.step > p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+
+.scope {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 70px;
+  margin-top: 80px;
+  padding-block: 55px;
+  border-block: 1px solid var(--line);
+}
+
+.scopeIntro h2 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: -.04em;
+}
+
+.scopeIntro > p:last-child {
+  max-width: 280px;
+  margin-top: 17px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.limits {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.limits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.limits li > svg {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--teal);
+}
+
+.limits h3 {
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.limits p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.limitsNote {
+  margin-top: 22px;
+  padding-left: 31px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.closing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  margin-top: 64px;
+  padding: 44px 45px;
+  border-radius: 12px;
+  color: #f8faf3;
+  background: #1b4f43;
+}
+
+.closing .eyebrow {
+  color: #b9d3c1;
+}
+
+.closing h2 {
+  font-size: 27px;
+  font-weight: 550;
+  line-height: 1.6;
+  letter-spacing: -.04em;
+}
+
+.closingCopy > p:last-child {
+  margin-top: 10px;
+  color: #d0e0d3;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.closingActionGroup {
+  flex-shrink: 0;
+}
+
+.closingActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lightButton {
+  color: #1b4f43;
+  background: #f7f7ee;
+}
+
+.lightButton:hover {
+  background: #e7ecdc;
+}
+
+.lightOutlineButton {
+  color: #f8faf3;
+  border-color: #73988b;
+}
+
+.lightOutlineButton:hover {
+  background: #316252;
+}
+
+.closingActionGroup > p {
+  margin-top: 13px;
+  color: #d0e0d3;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.closing a:focus-visible {
+  outline-color: #d2e7bd;
+}
+
+/* The share bar: below the last section, above the footer, out of the way of the main buttons. */
+.share {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 38px 34px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.footerBrand {
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+
+.footer nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-underline-offset: 4px;
+}
+
+.footer a:hover {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+@media (max-width: 980px) {
+  .hero {
+    padding-block: 54px 54px;
+  }
+
+  .sectionHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .recordingNote {
+    padding-bottom: 0;
+  }
+
+  .steps {
+    gap: 23px;
+  }
+
+  .step h3 {
+    font-size: 17px;
+  }
+
+  .scope {
+    grid-template-columns: .75fr 1.25fr;
+    gap: 36px;
+  }
+
+  .closing {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 27px;
+    padding: 35px;
+  }
+
+  .closingActionGroup > p {
+    font-size: 12px;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-block: 42px 46px;
+  }
+
+  .edition {
+    font-size: 14px;
+  }
+
+  .headline {
+    margin-top: 19px;
+    font-size: clamp(28px, 8.1vw, 42px);
+    line-height: 1.6;
+    letter-spacing: -.06em;
+  }
+
+  .heroDescription {
+    max-width: 380px;
+    margin: 18px auto 0;
+    font-size: 14px;
+    line-height: 1.95;
+    letter-spacing: 0;
+    text-wrap: pretty;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 23px;
+  }
+
+  .heroActions .primaryButton {
+    min-width: 228px;
+  }
+
+  .videoLink {
+    font-size: 14px;
+  }
+
+  .heroNote {
+    margin-top: 4px;
+    font-size: 14px;
+  }
+
+  /* One sentence a line (a phone broke "すぐに／試せます。" when they ran on). */
+  .noteSentence {
+    display: block;
+  }
+
+  .sectionHeading {
+    gap: 11px;
+    margin-bottom: 18px;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .sectionHeading h2 {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .recordingNote {
+    font-size: 14px;
+  }
+
+  .videoFrame {
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .video {
+    border-radius: 5px;
+  }
+
+  .videoSupport {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 12px;
+  }
+
+  .videoSupport > p {
+    font-size: 14px;
+  }
+
+  .videoSupport a {
+    min-height: 40px;
+    font-size: 14px;
+  }
+
+  .videoError {
+    font-size: 14px;
+  }
+
+  .transcript {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin-top: 0;
+    padding-block: 18px;
+    font-size: 14px;
+    line-height: 1.95;
+  }
+
+  .transcriptNote {
+    margin-top: 7px;
+    font-size: 14px;
+  }
+
+  .stepsSection {
+    margin-top: 48px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 21px;
+  }
+
+  .step {
+    padding-top: 20px;
+  }
+
+  .stepTop {
+    margin-bottom: 13px;
+    font-size: 14px;
+  }
+
+  .step h3 {
+    margin-bottom: 8px;
+    font-size: 19px;
+  }
+
+  .step > p {
+    font-size: 14px;
+  }
+
+  .scope {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 42px;
+    padding-block: 35px;
+  }
+
+  .scopeIntro h2 {
+    font-size: 25px;
+    line-height: 1.55;
+  }
+
+  .scopeIntro > p:last-child {
+    max-width: 100%;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .limits {
+    gap: 22px;
+  }
+
+  .limits li {
+    gap: 10px;
+  }
+
+  .limits h3 {
+    font-size: 14px;
+  }
+
+  .limits p {
+    font-size: 14px;
+  }
+
+  .limitsNote {
+    padding-left: 28px;
+    font-size: 14px;
+  }
+
+  .closing {
+    gap: 23px;
+    margin-top: 35px;
+    padding: 28px 24px;
+    border-radius: 10px;
+  }
+
+  .closing h2 {
+    font-size: 23px;
+    line-height: 1.65;
+    text-wrap: balance;
+  }
+
+  .closingCopy > p:last-child {
+    font-size: 14px;
+  }
+
+  .closingActionGroup {
+    width: 100%;
+  }
+
+  .closingActions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .closingActions .button {
+    min-height: 48px;
+    padding-inline: 14px;
+    font-size: 14px;
+    gap: 13px;
+  }
+
+  .closingActionGroup > p {
+    font-size: 14px;
+  }
+
+  .footer {
+    gap: 10px;
+    padding-block: 27px 24px;
+    font-size: 14px;
+  }
+
+  .footer nav {
+    gap: 22px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

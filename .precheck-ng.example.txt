@@ -1,0 +1,8 @@
+# このファイルを .precheck-ng.txt にコピーし、公開したくない語句を1行ずつ書く。
+# 大文字小文字を区別しない正規表現として扱われるため、記号は必要に応じてエスケープする。
+# .precheck-ng.txt はgitignore済み。実名・個人メールの一部・所属ID・取引先名などを設定する。
+
+your-real-name
+private-email-fragment
+organization-id
+client-name

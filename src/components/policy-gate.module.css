@@ -1,0 +1,30 @@
+/* The dialog scrolls on short screens. Its fixed part (the checkbox, its note and the buttons) stays at the bottom
+   (sticky) and only the body scrolls under it; the scroll padding is the fixed part's height (policy-gate.tsx). */
+.dialog { --pad-x: 26px; width: min(560px, calc(100% - 32px)); max-height: calc(100% - 32px); max-height: calc(100dvh - 32px); padding: 26px var(--pad-x) 0; overflow-y: auto; overscroll-behavior: contain; scroll-padding-bottom: calc(var(--gate-fixed-height, 180px) + 12px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); line-height: 1.85; box-shadow: 0 18px 48px #1c2a2033; }
+.dialog::backdrop { background: #1f2a2366; }
+.title { font-size: 19px; line-height: 1.6; }
+.intro { margin-top: 10px; color: var(--muted); font-size: 13px; }
+.summary { margin: 14px 0 0; padding-left: 1.3em; font-size: 13px; }
+.summary li + li { margin-top: 6px; }
+.fullText { display: inline-block; margin-top: 14px; color: var(--teal); font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.newTab { font-weight: 400; font-size: 12px; }
+/* --muted, not --faint: small text needs 4.5:1 against the dialog (--faint is about 3.2:1). */
+.version { margin-top: 8px; color: var(--muted); font-size: 12px; }
+.fixed { position: sticky; bottom: 0; z-index: 1; margin: 14px calc(-1 * var(--pad-x)) 0; padding: 14px var(--pad-x) 20px; border-top: 1px solid transparent; background: var(--surface); transition: box-shadow .15s, border-color .15s; }
+/* More of the body is below: a thin rule and shadow on the fixed part, and the text above it fades out. */
+.fixed.moreBelow { border-top-color: var(--line); box-shadow: 0 -10px 16px -12px #1c2a2047; }
+.fixed.moreBelow::before { content: ""; position: absolute; right: 0; bottom: calc(100% + 1px); left: 0; height: 22px; background: linear-gradient(#fffefa00, var(--surface)); pointer-events: none; }
+.check { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border: 1px solid #d9e4d3; border-radius: 10px; background: #f1f5ec; font-size: 14px; font-weight: 600; cursor: pointer; }
+.check input { width: 18px; height: 18px; flex: 0 0 18px; margin: 4px 0 0; accent-color: var(--teal); cursor: pointer; }
+.help { margin-top: 6px; color: var(--muted); font-size: 12px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 12px; }
+
+@media (max-width: 620px) {
+  .intro, .summary, .fullText, .newTab, .help, .version { font-size: 14px; }
+}
+
+@media (max-width: 420px) {
+  .dialog { --pad-x: 18px; padding-top: 22px; }
+  .fixed { padding-top: 12px; padding-bottom: 16px; }
+  .actions > * { flex: 1 1 0; }
+}

@@ -1,0 +1,34 @@
+node_modules/
+.next/
+next-env.d.ts
+.env*
+test-results/
+playwright-report/
+.agent-harness/evidence/
+.DS_Store
+*.log
+*.tsbuildinfo
+.data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+# Credentials and saved browser sign-in state stay on this machine (a safety net: the app itself uses none).
+client_secret*.json
+credentials*.json
+auth-state*.json
+storage-state*.json
+.auth/
+# Temporary pull-request body.
+tmp-pr.md
+.open-next/
+.wrangler/
+.dev.vars*
+!.dev.vars.example
+.deployment-secrets.json
+cloudflare-env.d.ts
+# Private phrases for the pre-publication check (npm run hygiene). Copy .precheck-ng.example.txt; never commit the real list.
+.precheck-ng.txt
+
+# Local deploy settings that carry identifiers (a custom domain, another Worker name): never committed (docs/deployment.md)
+wrangler.production.jsonc
+wrangler.staging.jsonc

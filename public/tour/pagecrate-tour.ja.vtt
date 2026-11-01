@@ -1,0 +1,28 @@
+WEBVTT
+
+NOTE
+Times follow AT in scripts/record-tour.mjs. The policy check fills the height of the video, and a caption at the
+bottom would cover its buttons (Chrome keeps captions above the bottom edge), so the first three cues sit at 12%,
+over the check's short introduction. On the result screens, 20% stays clear of the heading and the selection bar
+while a cue is at most about 20 characters wide; a longer one reaches the title of the note box.
+
+00:00.000 --> 00:03.750 line:12% position:50% size:90% align:center
+登録・ログインなしで、デモを始めます。
+
+00:03.750 --> 00:08.000 line:12% position:50% size:90% align:center
+はじめに1回だけ、プライバシーポリシーを確認します。
+
+00:08.000 --> 00:11.400 line:12% position:50% size:90% align:center
+チェックを入れて「進む」を押します。
+
+00:11.400 --> 00:16.000 line:20% position:50% size:90% align:center
+画像を見比べて、必要な素材を選びます。
+
+00:16.000 --> 00:21.000 line:20% position:50% size:90% align:center
+動画に絞り込み、画像と一緒に選びます。
+
+00:21.000 --> 00:25.000 line:20% position:50% size:90% align:center
+選んだ2点を、ひとつのZIPファイルに保存。
+
+00:25.000 --> 00:30.000 line:20% position:50% size:90% align:center
+ZIPには、原本と出典の記録が入ります。
