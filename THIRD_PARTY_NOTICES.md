@@ -11,7 +11,7 @@
 
 ## 集計
 
-- パッケージ：409件（本文あり 320件・全文なし 89件）
+- パッケージ：410件（本文あり 321件・全文なし 89件）
 - 本文の種類：39種類
 - NOTICE の種類：0種類
 
@@ -21,8 +21,8 @@
 | Apache-2.0 | 111 |
 | ISC | 20 |
 | LGPL-3.0-or-later | 10 |
+| BlueOak-1.0.0 | 8 |
 | BSD-3-Clause | 7 |
-| BlueOak-1.0.0 | 7 |
 | Apache-2.0 AND LGPL-3.0-or-later | 3 |
 | BSD-2-Clause | 3 |
 | MIT OR Apache-2.0 | 3 |
@@ -95,11 +95,11 @@ SOFTWARE.
 | `@cloudflare/kv-asset-handler` | 0.5.0 | MIT OR Apache-2.0 | node_modules にライセンスのファイルが無い | — |
 | `@cloudflare/playwright` | 1.3.6 | Apache-2.0 | node_modules にライセンスのファイルが無い | — |
 | `@cloudflare/unenv-preset` | 2.16.2 | MIT OR Apache-2.0 | node_modules にライセンスのファイルが無い | — |
-| `@cloudflare/workerd-darwin-64` | 1.20261012.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
-| `@cloudflare/workerd-darwin-arm64` | 1.20261012.1 | Apache-2.0 | node_modules にライセンスのファイルが無い | — |
-| `@cloudflare/workerd-linux-64` | 1.20261012.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
-| `@cloudflare/workerd-linux-arm64` | 1.20261012.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
-| `@cloudflare/workerd-windows-64` | 1.20261012.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
+| `@cloudflare/workerd-darwin-64` | 1.20261023.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
+| `@cloudflare/workerd-darwin-arm64` | 1.20261023.1 | Apache-2.0 | node_modules にライセンスのファイルが無い | — |
+| `@cloudflare/workerd-linux-64` | 1.20261023.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
+| `@cloudflare/workerd-linux-arm64` | 1.20261023.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
+| `@cloudflare/workerd-windows-64` | 1.20261023.1 | Apache-2.0 | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
 | `@emnapi/runtime` | 1.11.3 | MIT | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
 | `@esbuild/aix-ppc64` | 0.28.2 | MIT | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
 | `@esbuild/android-arm` | 0.28.2 | MIT | この端末の node_modules に無い（ほかの端末向けの任意の部品） | — |
@@ -164,11 +164,11 @@ SOFTWARE.
 | `client-only` | 0.0.1 | MIT | node_modules にライセンスのファイルが無い | — |
 | `eastasianwidth` | 0.2.0 | MIT | node_modules にライセンスのファイルが無い | — |
 | `imurmurhash` | 0.1.4 | MIT | node_modules にライセンスのファイルが無い | — |
-| `miniflare` | 5.20261012.1-beta | MIT | node_modules にライセンスのファイルが無い | — |
+| `miniflare` | 5.20261023.3-beta | MIT | node_modules にライセンスのファイルが無い | — |
 | `tr46` | 0.0.3 | MIT | node_modules にライセンスのファイルが無い | — |
 | `undici-types` | 5.26.5 | MIT | node_modules にライセンスのファイルが無い | — |
-| `workerd` | 1.20261012.1 | Apache-2.0 | node_modules にライセンスのファイルが無い | — |
-| `wrangler` | 4.151.1 | MIT OR Apache-2.0 | node_modules にライセンスのファイルが無い | — |
+| `workerd` | 1.20261023.1 | Apache-2.0 | node_modules にライセンスのファイルが無い | — |
+| `wrangler` | 4.156.0 | MIT OR Apache-2.0 | node_modules にライセンスのファイルが無い | — |
 
 ## 本文ごとのパッケージ
 
@@ -188,7 +188,7 @@ SOFTWARE.
 | `ansi-regex` | 6.4.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
 | `ansi-regex` | 6.4.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
 | `ansi-regex` | 6.4.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
-| `ansi-regex` | 6.4.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
+| `ansi-regex` | 6.5.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
 | `ansi-styles` | 4.3.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (sindresorhus.com) | — |
 | `ansi-styles` | 6.2.3 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
 | `ansi-styles` | 6.2.3 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
@@ -248,7 +248,7 @@ SOFTWARE.
 | `toidentifier` | 1.0.1 | MIT | Copyright (c) 2016 Douglas Christopher Wilson &lt;doug@somethingdoug.com&gt; | — |
 | `ts-tqdm` | 0.8.6 | MIT | Copyright (c) 2023 Leandro Del'Arco | — |
 | `undici` | 6.29.1 | MIT | Copyright (c) Matteo Collina and Undici contributors | — |
-| `undici` | 7.29.1 | MIT | Copyright (c) Matteo Collina and Undici contributors | — |
+| `undici` | 7.30.1 | MIT | Copyright (c) Matteo Collina and Undici contributors | — |
 | `undici-types` | 8.9.0 | MIT | Copyright (c) Matteo Collina and Undici contributors | — |
 | `unenv` | 2.0.0-rc.24 | MIT | Copyright (c) Pooya Parsa &lt;pooya@pi0.io&gt; | — |
 | `wrap-ansi` | 7.0.0 | MIT | Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (https://sindresorhus.com) | — |
@@ -569,7 +569,7 @@ SOFTWARE.
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
 | `accepts` | 2.0.0 | MIT | Copyright (c) 2014 Jonathan Ong &lt;me@jongleberry.com&gt;<br>Copyright (c) 2015 Douglas Christopher Wilson &lt;doug@somethingdoug.com&gt; | — |
-| `body-parser` | 2.3.0 | MIT | Copyright (c) 2014 Jonathan Ong &lt;me@jongleberry.com&gt;<br>Copyright (c) 2014-2015 Douglas Christopher Wilson &lt;doug@somethingdoug.com&gt; | — |
+| `body-parser` | 2.4.0 | MIT | Copyright (c) 2014 Jonathan Ong &lt;me@jongleberry.com&gt;<br>Copyright (c) 2014-2015 Douglas Christopher Wilson &lt;doug@somethingdoug.com&gt; | — |
 | `bytes` | 3.1.2 | MIT | Copyright (c) 2012-2014 TJ Holowaychuk &lt;tj@vision-media.ca&gt;<br>Copyright (c) 2015 Jed Watson &lt;jed.watson@me.com&gt; | — |
 | `commander` | 2.20.3 | MIT | Copyright (c) 2011 TJ Holowaychuk &lt;tj@vision-media.ca&gt; | — |
 | `content-disposition` | 2.0.1 | MIT | Copyright (c) 2014-2017 Douglas Christopher Wilson | — |
@@ -736,7 +736,7 @@ SOFTWARE.
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
 | `foreground-child` | 3.3.1 | ISC | Copyright (c) 2015-2023 Isaac Z. Schlueter and Contributors | — |
-| `glob` | 10.3.3 | ISC | Copyright (c) 2009-2023 Isaac Z. Schlueter and Contributors | — |
+| `glob` | 10.5.0 | ISC | Copyright (c) 2009-2023 Isaac Z. Schlueter and Contributors | — |
 | `inherits` | 2.0.4 | ISC | Copyright (c) Isaac Z. Schlueter | — |
 | `isexe` | 2.0.0 | ISC | Copyright (c) Isaac Z. Schlueter and Contributors | — |
 | `lru-cache` | 10.4.3 | ISC | Copyright (c) 2010-2023 Isaac Z. Schlueter and Contributors | — |
@@ -1024,11 +1024,79 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-### 本文 10（BlueOak-1.0.0・5件）
+### 本文 10（BSD-3-Clause・4件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
-| `jackspeak` | 2.3.6 | BlueOak-1.0.0 | （本文を参照） | — |
+| `@dotenvx/dotenvx` | 2.38.0 | BSD-3-Clause | Copyright (c) 2024, Scott Motte | — |
+| `@dotenvx/primitives` | 3.3.1 | BSD-3-Clause | Copyright (c) 2024, Scott Motte | — |
+| `@dotenvx/providers` | 0.3.8 | BSD-3-Clause | Copyright (c) 2024, Scott Motte | — |
+| `@dotenvx/tooling` | 1.0.5 | BSD-3-Clause | Copyright (c) 2026, Scott Motte | — |
+
+```text
+BSD 3-Clause License
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+### 本文 11（MIT・4件）
+
+| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
+|---|---|---|---|---|
+| `@tsconfig/node18` | 18.2.7 | MIT | Copyright (c) Microsoft Corporation. | — |
+| `@types/node` | 18.19.130 | MIT | Copyright (c) Microsoft Corporation. | — |
+| `@types/node` | 26.6.1 | MIT | Copyright (c) Microsoft Corporation. | — |
+| `@types/node-fetch` | 2.6.13 | MIT | Copyright (c) Microsoft Corporation. | — |
+
+```text
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE
+```
+
+### 本文 12（BlueOak-1.0.0・4件）
+
+| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
+|---|---|---|---|---|
 | `lru-cache` | 11.5.3 | BlueOak-1.0.0 | （本文を参照） | — |
 | `minipass` | 7.1.3 | BlueOak-1.0.0 | （本文を参照） | — |
 | `path-scurry` | 1.11.1 | BlueOak-1.0.0 | （本文を参照） | — |
@@ -1090,75 +1158,6 @@ No contributor can revoke this license.
 without any warranty or condition, and no contributor
 will be liable to anyone for any damages related to this
 software or this license, under any kind of legal claim.***
-```
-
-### 本文 11（BSD-3-Clause・4件）
-
-| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
-|---|---|---|---|---|
-| `@dotenvx/dotenvx` | 2.38.0 | BSD-3-Clause | Copyright (c) 2024, Scott Motte | — |
-| `@dotenvx/primitives` | 3.3.1 | BSD-3-Clause | Copyright (c) 2024, Scott Motte | — |
-| `@dotenvx/providers` | 0.3.8 | BSD-3-Clause | Copyright (c) 2024, Scott Motte | — |
-| `@dotenvx/tooling` | 1.0.5 | BSD-3-Clause | Copyright (c) 2026, Scott Motte | — |
-
-```text
-BSD 3-Clause License
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-3. Neither the name of the copyright holder nor the names of its
-   contributors may be used to endorse or promote products derived from
-   this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-
-### 本文 12（MIT・4件）
-
-| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
-|---|---|---|---|---|
-| `@tsconfig/node18` | 18.2.7 | MIT | Copyright (c) Microsoft Corporation. | — |
-| `@types/node` | 18.19.130 | MIT | Copyright (c) Microsoft Corporation. | — |
-| `@types/node` | 26.6.1 | MIT | Copyright (c) Microsoft Corporation. | — |
-| `@types/node-fetch` | 2.6.13 | MIT | Copyright (c) Microsoft Corporation. | — |
-
-```text
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE
 ```
 
 ### 本文 13（Apache-2.0・3件）
@@ -1814,12 +1813,150 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
 
-### 本文 17（BSD-3-Clause・2件）
+### 本文 17（BlueOak-1.0.0・2件）
+
+| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
+|---|---|---|---|---|
+| `glob` | 13.0.6 | BlueOak-1.0.0 | （本文を参照） | — |
+| `package-json-from-dist` | 1.0.1 | BlueOak-1.0.0 | （本文を参照） | — |
+
+```text
+All packages under `src/` are licensed according to the terms in
+their respective `LICENSE` or `LICENSE.md` files.
+
+The remainder of this project is licensed under the Blue Oak
+Model License, as follows:
+
+-----
+
+# Blue Oak Model License
+
+Version 1.0.0
+
+## Purpose
+
+This license gives everyone as much permission to work with
+this software as possible, while protecting contributors
+from liability.
+
+## Acceptance
+
+In order to receive this license, you must agree to its
+rules.  The rules of this license are both obligations
+under that agreement and conditions to your license.
+You must not do anything with this software that triggers
+a rule that you cannot or will not follow.
+
+## Copyright
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe that contributor's
+copyright in it.
+
+## Notices
+
+You must ensure that everyone who gets a copy of
+any part of this software from you, with or without
+changes, also gets the text of this license or a link to
+<https://blueoakcouncil.org/license/1.0.0>.
+
+## Excuse
+
+If anyone notifies you in writing that you have not
+complied with [Notices](#notices), you can keep your
+license by taking all practical steps to comply within 30
+days after the notice.  If you do not do so, your license
+ends immediately.
+
+## Patent
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe any patent claims
+they can license or become able to license.
+
+## Reliability
+
+No contributor can revoke this license.
+
+## No Liability
+
+***As far as the law allows, this software comes as is,
+without any warranty or condition, and no contributor
+will be liable to anyone for any damages related to this
+software or this license, under any kind of legal claim.***
+```
+
+### 本文 18（BlueOak-1.0.0・2件）
+
+| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
+|---|---|---|---|---|
+| `jackspeak` | 3.4.3 | BlueOak-1.0.0 | （本文を参照） | — |
+| `minimatch` | 10.2.6 | BlueOak-1.0.0 | （本文を参照） | — |
+
+```text
+# Blue Oak Model License
+
+Version 1.0.0
+
+## Purpose
+
+This license gives everyone as much permission to work with
+this software as possible, while protecting contributors
+from liability.
+
+## Acceptance
+
+In order to receive this license, you must agree to its
+rules. The rules of this license are both obligations
+under that agreement and conditions to your license.
+You must not do anything with this software that triggers
+a rule that you cannot or will not follow.
+
+## Copyright
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe that contributor's
+copyright in it.
+
+## Notices
+
+You must ensure that everyone who gets a copy of
+any part of this software from you, with or without
+changes, also gets the text of this license or a link to
+<https://blueoakcouncil.org/license/1.0.0>.
+
+## Excuse
+
+If anyone notifies you in writing that you have not
+complied with [Notices](#notices), you can keep your
+license by taking all practical steps to comply within 30
+days after the notice. If you do not do so, your license
+ends immediately.
+
+## Patent
+
+Each contributor licenses you to do everything with this
+software that would otherwise infringe any patent claims
+they can license or become able to license.
+
+## Reliability
+
+No contributor can revoke this license.
+
+## No Liability
+
+**_As far as the law allows, this software comes as is,
+without any warranty or condition, and no contributor
+will be liable to anyone for any damages related to this
+software or this license, under any kind of legal claim._**
+```
+
+### 本文 19（BSD-3-Clause・2件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
 | `source-map` | 0.6.1 | BSD-3-Clause | Copyright (c) 2009-2011, Mozilla Foundation and contributors | — |
-| `source-map-js` | 1.2.1 | BSD-3-Clause | Copyright (c) 2009-2011, Mozilla Foundation and contributors | — |
+| `source-map-js` | 1.2.2 | BSD-3-Clause | Copyright (c) 2009-2011, Mozilla Foundation and contributors | — |
 
 ```text
 All rights reserved.
@@ -1850,7 +1987,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-### 本文 18（Apache-2.0・1件）
+### 本文 20（Apache-2.0・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2033,7 +2170,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       of your accepting any such warranty or additional liability.
 ```
 
-### 本文 19（MIT・1件）
+### 本文 21（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2116,7 +2253,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-### 本文 20（CC0-1.0・1件）
+### 本文 22（CC0-1.0・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2246,7 +2383,7 @@ express Statement of Purpose.
     this CC0 or use of the Work.
 ```
 
-### 本文 21（MIT・1件）
+### 本文 23（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2275,7 +2412,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-### 本文 22（MIT・1件）
+### 本文 24（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2303,7 +2440,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
 
-### 本文 23（MIT・1件）
+### 本文 25（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2331,7 +2468,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-### 本文 24（MIT・1件）
+### 本文 26（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2363,7 +2500,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-### 本文 25（MIT・1件）
+### 本文 27（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2409,7 +2546,7 @@ programs and associated documentation files created by the
 Original Author, when distributed with the Software.
 ```
 
-### 本文 26（MIT・1件）
+### 本文 28（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2439,7 +2576,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-### 本文 27（CC-BY-4.0・1件）
+### 本文 29（CC-BY-4.0・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2834,7 +2971,7 @@ public licenses.
 Creative Commons may be contacted at creativecommons.org.
 ```
 
-### 本文 28（MIT・1件）
+### 本文 30（MIT・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2863,7 +3000,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-### 本文 29（BSD-2-Clause・1件）
+### 本文 31（BSD-2-Clause・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2891,7 +3028,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-### 本文 30（ISC・1件）
+### 本文 32（ISC・1件）
 
 | パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
 |---|---|---|---|---|
@@ -2903,142 +3040,6 @@ ISC License (ISC)
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-```
-
-### 本文 31（BlueOak-1.0.0・1件）
-
-| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
-|---|---|---|---|---|
-| `glob` | 13.0.6 | BlueOak-1.0.0 | （本文を参照） | — |
-
-```text
-All packages under `src/` are licensed according to the terms in
-their respective `LICENSE` or `LICENSE.md` files.
-
-The remainder of this project is licensed under the Blue Oak
-Model License, as follows:
-
------
-
-# Blue Oak Model License
-
-Version 1.0.0
-
-## Purpose
-
-This license gives everyone as much permission to work with
-this software as possible, while protecting contributors
-from liability.
-
-## Acceptance
-
-In order to receive this license, you must agree to its
-rules.  The rules of this license are both obligations
-under that agreement and conditions to your license.
-You must not do anything with this software that triggers
-a rule that you cannot or will not follow.
-
-## Copyright
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe that contributor's
-copyright in it.
-
-## Notices
-
-You must ensure that everyone who gets a copy of
-any part of this software from you, with or without
-changes, also gets the text of this license or a link to
-<https://blueoakcouncil.org/license/1.0.0>.
-
-## Excuse
-
-If anyone notifies you in writing that you have not
-complied with [Notices](#notices), you can keep your
-license by taking all practical steps to comply within 30
-days after the notice.  If you do not do so, your license
-ends immediately.
-
-## Patent
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe any patent claims
-they can license or become able to license.
-
-## Reliability
-
-No contributor can revoke this license.
-
-## No Liability
-
-***As far as the law allows, this software comes as is,
-without any warranty or condition, and no contributor
-will be liable to anyone for any damages related to this
-software or this license, under any kind of legal claim.***
-```
-
-### 本文 32（BlueOak-1.0.0・1件）
-
-| パッケージ | 版 | ライセンス | 著作権の行 | 備考 |
-|---|---|---|---|---|
-| `minimatch` | 10.2.6 | BlueOak-1.0.0 | （本文を参照） | — |
-
-```text
-# Blue Oak Model License
-
-Version 1.0.0
-
-## Purpose
-
-This license gives everyone as much permission to work with
-this software as possible, while protecting contributors
-from liability.
-
-## Acceptance
-
-In order to receive this license, you must agree to its
-rules. The rules of this license are both obligations
-under that agreement and conditions to your license.
-You must not do anything with this software that triggers
-a rule that you cannot or will not follow.
-
-## Copyright
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe that contributor's
-copyright in it.
-
-## Notices
-
-You must ensure that everyone who gets a copy of
-any part of this software from you, with or without
-changes, also gets the text of this license or a link to
-<https://blueoakcouncil.org/license/1.0.0>.
-
-## Excuse
-
-If anyone notifies you in writing that you have not
-complied with [Notices](#notices), you can keep your
-license by taking all practical steps to comply within 30
-days after the notice. If you do not do so, your license
-ends immediately.
-
-## Patent
-
-Each contributor licenses you to do everything with this
-software that would otherwise infringe any patent claims
-they can license or become able to license.
-
-## Reliability
-
-No contributor can revoke this license.
-
-## No Liability
-
-**_As far as the law allows, this software comes as is,
-without any warranty or condition, and no contributor
-will be liable to anyone for any damages related to this
-software or this license, under any kind of legal claim._**
 ```
 
 ### 本文 33（MIT・1件）
