@@ -38,7 +38,7 @@ npm run preview:worker -- --ip 127.0.0.1 --port 8787
 
 ブラウザーで `http://127.0.0.1:8787/demo` を開きます。`localhost:8787` で開くと、公開 origin の設定とホスト名が合わず、API が403を返します。デモは外部のサービスなしで動きます（`.dev.vars` にある手元用のチケット鍵は要ります）。
 
-公開サイトは、権利と規約の確認が済むまで、実サイトの取得を止めた構成（`PAGECRATE_PAUSED=1`。デモだけが動く）で出します（[運営の手順](docs/operations.md)）。手元でその画面を見るときは、`.dev.vars` の `PAGECRATE_PAUSED` を `1` にします。
+公開サイトを運営するときは、権利と規約の確認が済むまで、実サイトの取得を止めた構成（`PAGECRATE_PAUSED=1`。デモだけが動く）で出すことをおすすめします。確認の前に開けるかどうかは、運営者が決めます。リスクは運営者が負います（[運営の手順](docs/operations.md)）。手元でその画面を見るときは、`.dev.vars` の `PAGECRATE_PAUSED` を `1` にします。
 
 実際のサイトの解析には、Cloudflare Turnstile（ボット確認）の本物の鍵が要ります。`.dev.vars.example` の鍵は Cloudflare が公開している試験用です。公式の例では、試験用の鍵の検証結果はホスト名 `localhost`・action `test` になっており、このアプリの検査（公開 origin のホスト名と action `scan`）と合いません。そのため手元では実サイトの解析が通らない見込みです（未確認）。`npm run dev` と `next start` には Cloudflare の環境が無く、API は「混み合っています」を返します。画面の作業にだけ使えます。
 
