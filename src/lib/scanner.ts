@@ -157,6 +157,9 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
     let usedInitial = false;
     const handle = async (route: ScanRoute) => {
       const request = route.request();
+      if (request.resourceType() === "document" && (usedInitial || !request.isNavigationRequest() || request.url() !== pageUrl)) {
+        await route.abort(); return;
+      }
       requestCount++;
       const inferred = inferKind(request.url());
       if (inferred) add({ url: request.url(), source: "通信", kind: inferred });
@@ -176,7 +179,6 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
         if (kind) add({ url: response.url, source: "通信", kind, mime, bytes: response.body.length });
         // Relative CSS URLs must keep their redirected response's base URL.
         if (response.url !== request.url() && mime.includes("text/css")) response.body = Buffer.from(rebaseCss(response.body.toString("utf8"), response.url));
-        if (request.resourceType() === "document" && request.url() !== pageUrl) { await route.abort(); return; }
         if (response.status >= 300 && response.status < 400) { await route.abort(); return; }
         await route.fulfill({ status: response.status, headers: cleanHeaders(response), body: response.body });
       } catch {

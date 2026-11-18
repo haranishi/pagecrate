@@ -263,3 +263,15 @@ test("scan API: nothing is logged, and no error body carries the URL, a ticket o
   assert.equal(bodies.length, 4);
   for (const body of bodies) for (const secret of [TARGET, "photos.example.org", "blocked.example", IP, TOKEN, ORIGIN]) assert.equal(body.includes(secret), false, body.slice(0, 60));
 });
+
+test("single-page scans do not fetch the document of an embedded frame", async () => {
+  const frame = "https://frames.example.org/calendar";
+  const run = harness({ routes: { [TARGET]: HTML, [frame]: HTML }, page: { requests: [
+    { url: TARGET, resourceType: "document", navigation: true },
+    { url: frame, resourceType: "document", navigation: true },
+  ] } });
+  await scanned(await handleScan(scanRequest(live()), run.deps));
+  assert.deepEqual(run.browser.log.fulfilled, [TARGET]);
+  assert.deepEqual(run.browser.log.aborted, [frame]);
+  assert.deepEqual(run.site.fetched, [TARGET]);
+});
