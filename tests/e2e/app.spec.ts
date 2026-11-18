@@ -330,3 +330,15 @@ for (const width of [390, 768, 1440]) {
     expect(violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
   });
 }
+
+test("a visitor whose clock is two hours fast can save a newly issued demo result", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(Date.now() + 2 * 3_600_000));
+  await open(page, "/demo");
+  await page.getByRole("button", { name: "デモを始める", exact: true }).click();
+  const poster = page.getByRole("checkbox", { name: "studio-poster.svg を選択" });
+  await expect(poster).toBeEnabled();
+  await poster.check();
+  const download = page.waitForEvent("download");
+  await page.getByRole("button", { name: /ZIPで保存/ }).click();
+  expect((await download).suggestedFilename()).toBe("pagecrate-demo.zip");
+});

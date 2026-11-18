@@ -164,6 +164,8 @@ export async function postScan(input: ScanInput, options: { signal?: AbortSignal
     return aborted(error, signal) ? { ok: false, aborted: true } : { ok: false, aborted: false, error: networkError() };
   }
   if (!response.ok) return { ok: false, aborted: false, error: await readApiError(response) };
+  const receivedAt = Date.now();
+  const serverTime = Date.parse(response.headers.get("Date") ?? "");
   let body: unknown;
   try {
     body = await response.json();
@@ -171,7 +173,13 @@ export async function postScan(input: ScanInput, options: { signal?: AbortSignal
     return aborted(error, signal) ? { ok: false, aborted: true } : { ok: false, aborted: false, error: { code: "UNKNOWN", message: UNREADABLE_MESSAGE, status: response.status } };
   }
   const scan = parseScanResponse(body);
-  return scan ? { ok: true, value: scan } : { ok: false, aborted: false, error: { code: "UNKNOWN", message: UNREADABLE_MESSAGE, status: response.status } };
+  if (!scan) return { ok: false, aborted: false, error: { code: "UNKNOWN", message: UNREADABLE_MESSAGE, status: response.status } };
+  // Express the remaining ticket lifetime on the device's clock for the timer, previews and displayed deadline.
+  if (Number.isFinite(serverTime)) {
+    const remaining = Date.parse(scan.expiresAt) - serverTime;
+    return { ok: true, value: { ...scan, expiresAt: new Date(receivedAt + remaining).toISOString() } };
+  }
+  return { ok: true, value: scan };
 }
 
 /** POST /api/download {tickets}. The ZIP is read to the end, so a stream that breaks off counts as a failure. */
