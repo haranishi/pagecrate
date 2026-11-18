@@ -101,7 +101,7 @@ function UrlForm({ busy, scanning, checking, paused, onDemo, onScan, inputRef: i
     </div>}
     <form className="scan-form" onSubmit={submit} noValidate>
       <label className="url-label" htmlFor="page-url">素材を集めたいページのURL</label>
-      <div className="url-field"><Icon name="link" /><input ref={input} id="page-url" name="url" type="url" inputMode="url" autoComplete="off" autoCapitalize="none" spellCheck={false} placeholder="例：https://example.com/gallery" value={url} onChange={event => setUrl(event.target.value)} disabled={busy} aria-invalid={showProblem} aria-describedby={describedBy} /></div>
+      <div className="url-field"><Icon name="link" /><input ref={input} id="page-url" type="url" inputMode="url" autoComplete="off" autoCapitalize="none" spellCheck={false} placeholder="例：https://example.com/gallery" value={url} onChange={event => setUrl(event.target.value)} disabled={busy} aria-invalid={showProblem} aria-describedby={describedBy} /></div>
       <p id="rights-note" className="rights-note"><Icon name="info" /><span><Sentences text={RIGHTS_NOTE} patterns={RIGHTS_NOTE_SENTENCES} /></span></p>
       {showHelp && <p id="url-help" className={`url-format-help${showProblem ? " is-invalid" : ""}`}>{showProblem ? problem : <Phrased text={URL_HELP} pattern={URL_HELP_PHRASES} />}</p>}
       <div className="scan-actions">
