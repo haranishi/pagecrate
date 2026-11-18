@@ -218,6 +218,18 @@ test("video tags other than the encoder and the mechanical items fail; creation_
   assert.deepEqual(warns(run).map(where), ["media-metadata|動画の creation_time（作成日時）|public/tour/shot.mp4|-"], show(run));
 });
 
+test("a zero MP4 vendor ID is empty, while a named vendor is reported", (t) => {
+  const root = makeTree(t, { ...cleanBase(), "public/empty.mp4": "", "public/named.mp4": "" });
+  const probe = join(SHARED, "vendor-probe");
+  writeFileSync(probe, [
+    "#!/usr/bin/env node",
+    'if (process.argv.includes("-version")) console.log("ffprobe version fixture");',
+    'else console.log(JSON.stringify({ streams: [{ tags: { vendor_id: process.argv.at(-1).endsWith("/empty.mp4") ? "[0][0][0][0]" : "TEST" } }] }));',
+  ].join("\n"), { mode: 0o755 });
+  const run = runTool(root, [], { ffprobe: probe });
+  assert.deepEqual(fails(run).map(where), ["media-metadata|動画の vendor_id|public/named.mp4|-"], show(run));
+});
+
 test("an SVG from a drawing tool is a warning to look at, not a failure", (t) => {
   const svg = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n<metadata><rdf:RDF/></metadata>\n<sodipodi:namedview inkscape:zoom=\"1\"/>\n</svg>\n";
   const run = runTool(makeTree(t, { ...cleanBase(), "public/logo.svg": svg }));

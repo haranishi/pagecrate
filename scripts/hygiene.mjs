@@ -410,6 +410,8 @@ function checkProbed(file, abs, ctx) {
       const name = /^[A-Za-z_][A-Za-z0-9_.:-]{0,40}$/.test(key) && !privateText(key, ctx) ? key : "名前を伏せた項目";
       const lower = key.toLowerCase();
       let problem = null;
+      // Older ffprobe versions expose the four NUL bytes of an unset MP4 vendor field as text.
+      if (lower === "vendor_id" && value === "[0][0][0][0]") continue;
       if (lower === "creation_time") problem = ["warn", "動画の creation_time（作成日時）"];
       else if (!VIDEO_TAGS_OK.has(lower)) problem = ["fail", `動画の ${name}`];
       else if (privateText(String(value), ctx)) problem = ["fail", `動画の ${name}（私的な値）`];
