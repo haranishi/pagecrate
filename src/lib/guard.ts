@@ -212,9 +212,10 @@ export async function guardScan(request: Request, ctx: GuardContext): Promise<Sc
     // Refused before the daily cap, so an internal target never uses up a render.
     if (nonPublicReason(url) !== null) return fail("PRIVATE_ADDRESS");
     url.hash = "";
-    switch (budgetAnswer(await deps.reserveRender(utcDay(at), config.dailyRenderCap))) {
+    const reservationTime = (ctx.now ?? Date.now)();
+    switch (budgetAnswer(await deps.reserveRender(utcDay(reservationTime), config.dailyRenderCap))) {
       case "ALLOWED": return { ok: true, demo: false, clientKey, url: url.href };
-      case "CAP_REACHED": return fail("DAILY_CAP_REACHED", { retryAfterSec: secondsUntilNextUtcDay(at) });
+      case "CAP_REACHED": return fail("DAILY_CAP_REACHED", { retryAfterSec: secondsUntilNextUtcDay(reservationTime) });
       case "CLOSED": return fail("PAUSED");
       case "FAILED": return dependencyFailure();
     }
