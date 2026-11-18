@@ -373,7 +373,9 @@ test("the output and the record name the place and the kind, never the value fou
   }
   const run = runTool(root, [], { gitleaks: GITLEAKS });
   assert.equal(run.status, 1, show(run));
-  assert.ok(fails(run).length >= 12, "every planted value is found");
+  // Eleven findings come from the built-in checks. The Slack hook and video comment need the optional tools.
+  const expected = 11 + Number(GITLEAKS !== null) + Number(HAS_FFMPEG);
+  assert.ok(fails(run).length >= expected, "every planted value detectable with the installed tools is found");
   const secrets = [...Object.values(values), ...Object.values(FAKE), FAKE.email.split("@")[0]];
   for (const [channel, text] of [["stdout", run.stdout], ["stderr", run.stderr], ["record", run.recordText]]) {
     for (const [index, value] of secrets.entries()) assert.ok(!text.toLowerCase().includes(value.toLowerCase()), `${channel} must not contain planted value #${index}`);
