@@ -10,6 +10,19 @@ test("redirected CSS uses final resource base", () => {
   assert.throws(() => rebaseCss("a{background:url(a)}".repeat(1500), `https://example.com/${"x".repeat(4000)}/main.css`), { code: "BODY_LIMIT" });
 });
 
+test("a quoted background URL retains the parentheses in its file name", async () => {
+  const base = "https://fixture.example.com";
+  const path = "/img/gallery(1).png";
+  const css = `div { height: 40px; background-image: url("..${path}") }`;
+  const html = `<style>${css}</style><div></div>`;
+  const fetcher = async (url: string): Promise<SafeResponse> => url === base + "/page"
+    ? { url, status: 200, headers: { "content-type": "text/html" }, body: Buffer.from(html) }
+    : { url, status: 200, headers: { "content-type": "image/png" }, body: Buffer.alloc(0) };
+  const result = await scanPage(base + "/page", fetcher, launchTestBrowser);
+  assert.deepEqual(result.assets.map(asset => asset.url), [base + path]);
+  assert.ok(rebaseCss(css, `${base}/css/main.css`).includes(`url("${base}${path}")`));
+});
+
 test("real Chromium extracts image/srcset/CSS/poster/video/lazy and blocks internal requests", { timeout: 45000 }, async () => {
   const blocked: string[] = [];
   const html = `<!doctype html><html><head><title>Controlled fixture</title><base href="/assets/"><style>.hero{height:400px;background-image:url('background.svg')}body{min-height:4000px}</style></head><body>

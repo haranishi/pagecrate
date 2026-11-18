@@ -82,7 +82,8 @@ export function rebaseCss(css: string, base: string): string {
     if (estimated > limit) throw new AppError("BODY_LIMIT", "CSSの展開後サイズが上限を超えています。", 413);
     return replacement;
   };
-  const rewritten = css.replace(/url\(\s*(['"]?)([^'"\s)]+)\1\s*\)/gi, (all, _quote, value: string) => bound(all, `url(${JSON.stringify(absolute(value))})`))
+  const rewritten = css.replace(/url\(\s*(?:"([^"]+)"|'([^']+)'|([^'"\s)]+))\s*\)/gi,
+    (all, doubleQuoted, singleQuoted, unquoted) => bound(all, `url(${JSON.stringify(absolute(doubleQuoted ?? singleQuoted ?? unquoted))})`))
     .replace(/@import\s+(['"])([^'"]+)\1/gi, (all, _quote, value: string) => bound(all, `@import ${JSON.stringify(absolute(value))}`));
   if (Buffer.byteLength(rewritten) > limit) throw new AppError("BODY_LIMIT", "CSSの展開後サイズが上限を超えています。", 413);
   return rewritten;

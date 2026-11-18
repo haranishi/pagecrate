@@ -34,8 +34,8 @@ export const DOM_SCRIPT = String.raw`(() => {
   }
   for (const element of [...document.querySelectorAll('body *')].slice(0, 2500)) {
     for (const pseudo of [null, '::before', '::after']) {
-      for (const match of getComputedStyle(element, pseudo).backgroundImage.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
-        add(match[1], pseudo ? 'CSS' + pseudo : 'CSS背景', 'image');
+      for (const match of getComputedStyle(element, pseudo).backgroundImage.matchAll(/url\((?:"([^"]+)"|'([^']+)'|([^'")]+))\)/g)) {
+        add(match[1] ?? match[2] ?? match[3], pseudo ? 'CSS' + pseudo : 'CSS背景', 'image');
       }
     }
   }
