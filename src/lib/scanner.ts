@@ -142,6 +142,7 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
   };
   const budget = new ByteBudget(TOTAL_BYTES);
   let requestCount = 0, activeRequests = 0;
+  const waiting: Array<() => void> = [];
   try {
     const fetcher = injectedFetcher ?? createWorkerSafeFetcher();
     const initial = await fetcher(validateUrl(input).href, { maxBytes: 4 * 1024 * 1024, signal: controller.signal, onBytes: budget.consume });
@@ -164,12 +165,14 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
       requestCount++;
       const inferred = inferKind(request.url());
       if (inferred) add({ url: request.url(), source: "通信", kind: inferred });
-      if (!["GET", "HEAD"].includes(request.method()) || controller.signal.aborted || requestCount > 160 || !budget.remaining || activeRequests >= MAX_ACTIVE_REQUESTS) {
+      if (!["GET", "HEAD"].includes(request.method()) || controller.signal.aborted || requestCount > 160 || !budget.remaining) {
         await route.abort(); return;
       }
       if (["media", "font"].includes(request.resourceType())) { await route.abort(); return; }
-      activeRequests++;
+      if (activeRequests < MAX_ACTIVE_REQUESTS) activeRequests++;
+      else await new Promise<void>(resolve => waiting.push(resolve));
       try {
+        if (controller.signal.aborted || !budget.remaining) { await route.abort(); return; }
         let response: SafeResponse;
         if (!usedInitial && request.isNavigationRequest() && request.url() === pageUrl) { response = initial; usedInitial = true; }
         else {
@@ -186,7 +189,11 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
         // A refused request (blocked host, internal address, limit) is never fetched; the page renders without it.
         await route.abort().catch(() => {});
       }
-      finally { activeRequests--; }
+      finally {
+        const next = waiting.shift();
+        if (next) next(); // Pass this slot directly to the next admitted request.
+        else activeRequests--;
+      }
     };
     await context.route("**/*", route => {
       const task = handle(route).catch(() => {});
