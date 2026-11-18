@@ -33,3 +33,17 @@ test("real Chromium extracts image/srcset/CSS/poster/video/lazy and blocks inter
   assert.ok(!result.assets.some(asset => asset.url.includes("127.0.0.1") || asset.url.includes("169.254")));
   assert.ok(blocked.length >= 1);
 });
+
+test("an extensionless HLS or DASH source is detected as a stream from its HTML type", async () => {
+  const html = '<video><source src="/watch?id=1" type="application/vnd.apple.mpegurl"></video>'
+    + '<video><source src="/watch?id=2" type="application/dash+xml"></video>';
+  const pageUrl = "https://fixture.example.com/gallery";
+  const fetcher = async (url: string): Promise<SafeResponse> => ({
+    url, status: 200, headers: { "content-type": "text/html" }, body: Buffer.from(html),
+  });
+  const result = await scanPage(pageUrl, fetcher, launchTestBrowser);
+  assert.deepEqual(result.assets.map(asset => [asset.url, asset.kind]), [
+    ["https://fixture.example.com/watch?id=1", "unsupported"],
+    ["https://fixture.example.com/watch?id=2", "unsupported"],
+  ]);
+});

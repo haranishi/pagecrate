@@ -38,14 +38,19 @@ export function normalizeAssets(candidates: Candidate[], pageUrl: string): { ass
     let url: string;
     const streamBlob = candidate.url.startsWith("blob:");
     try { url = streamBlob ? candidate.url : validateUrl(new URL(candidate.url, pageUrl).href).href; } catch { continue; }
+    const kind = inferKind(url, candidate.mime) ?? candidate.kind;
     const existing = found.get(url);
     if (existing) {
+      if (kind === "unsupported" && existing.kind !== kind) {
+        existing.kind = kind;
+        existing.format = "STREAM";
+        existing.reason = UNSUPPORTED_REASON;
+      }
       existing.width = Math.max(existing.width ?? 0, candidate.width ?? 0) || undefined;
       existing.height = Math.max(existing.height ?? 0, candidate.height ?? 0) || undefined;
       existing.bytes = existing.bytes ?? candidate.bytes;
       continue;
     }
-    const kind = inferKind(url, candidate.mime) ?? candidate.kind;
     if (!kind) continue;
     if (found.size >= MAX_CANDIDATES) { truncated = true; continue; }
     const extension = extensionOf(url);
