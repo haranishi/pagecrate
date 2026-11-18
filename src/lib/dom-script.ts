@@ -1,8 +1,8 @@
 // Keep browser-realm code free of helpers injected by server-side TypeScript bundlers.
 export const DOM_SCRIPT = String.raw`(() => {
   const items = [];
-  const add = (url, source, kind, width, height) => {
-    if (typeof url === 'string' && url.length > 0 && url.length <= 4096 && items.length < 1000) items.push({ url, source, kind, width, height });
+  const add = (url, source, kind, width, height, mime) => {
+    if (typeof url === 'string' && url.length > 0 && url.length <= 4096 && items.length < 1000) items.push({ url, source, kind, width, height, mime });
   };
   for (const image of document.images) {
     add(image.currentSrc || image.src, 'img', 'image', image.naturalWidth || undefined, image.naturalHeight || undefined);
@@ -30,12 +30,12 @@ export const DOM_SCRIPT = String.raw`(() => {
   for (const video of document.querySelectorAll('video')) {
     add(video.currentSrc || video.getAttribute('src'), 'video', 'video', video.videoWidth || undefined, video.videoHeight || undefined);
     add(video.poster, 'poster', 'image');
-    for (const source of video.querySelectorAll('source')) add(source.src, 'video/source', 'video');
+    for (const source of video.querySelectorAll('source')) add(source.src, 'video/source', 'video', undefined, undefined, source.type.slice(0, 128));
   }
   for (const element of [...document.querySelectorAll('body *')].slice(0, 2500)) {
     for (const pseudo of [null, '::before', '::after']) {
-      for (const match of getComputedStyle(element, pseudo).backgroundImage.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
-        add(match[1], pseudo ? 'CSS' + pseudo : 'CSS背景', 'image');
+      for (const match of getComputedStyle(element, pseudo).backgroundImage.matchAll(/url\((?:"([^"]+)"|'([^']+)'|([^'")]+))\)/g)) {
+        add(match[1] ?? match[2] ?? match[3], pseudo ? 'CSS' + pseudo : 'CSS背景', 'image');
       }
     }
   }

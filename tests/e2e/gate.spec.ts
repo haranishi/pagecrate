@@ -186,3 +186,15 @@ test("blocked storage: where localStorage throws, the confirmation lasts for thi
   await expect(page.getByRole("dialog", { name: GATE })).toBeVisible();
   expect(scans).toHaveLength(2);
 });
+
+test.describe("native URL form", () => {
+  test.use({ javaScriptEnabled: false });
+
+  test("submitting before the client starts keeps the entered URL out of the address bar", async ({ page }) => {
+    await page.goto("/app");
+    await page.getByLabel("素材を集めたいページのURL").fill("https://example.org/album?set=spring");
+    const navigation = page.waitForRequest(request => request.isNavigationRequest());
+    await page.getByRole("button", { name: "素材を見つける", exact: true }).click();
+    expect(new URL((await navigation).url()).search).toBe("");
+  });
+});

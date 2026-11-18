@@ -346,3 +346,17 @@ test("ticket guard keeps the demo unaffected by the scan-only checks", async () 
   assert.ok(result.ok);
   assert.deepEqual(run.calls, ["limit:preview"]);
 });
+
+test("a bot check spanning UTC midnight reserves a render on the new day", async () => {
+  let now = Date.parse("2026-10-31T23:59:59Z");
+  const { ctx, reserved } = context();
+  const result = await guardScan(scanRequest(live()), {
+    ...ctx, now: () => now,
+    deps: { ...ctx.deps, verifyBot: async () => {
+      now = Date.parse("2026-11-01T00:00:01Z");
+      return PASS;
+    } },
+  });
+  assert.equal(result.ok, true);
+  assert.deepEqual(reserved, [["2026-11-01", ctx.config.dailyRenderCap]]);
+});

@@ -10,6 +10,19 @@ test("redirected CSS uses final resource base", () => {
   assert.throws(() => rebaseCss("a{background:url(a)}".repeat(1500), `https://example.com/${"x".repeat(4000)}/main.css`), { code: "BODY_LIMIT" });
 });
 
+test("a quoted background URL retains the parentheses in its file name", async () => {
+  const base = "https://fixture.example.com";
+  const path = "/img/gallery(1).png";
+  const css = `div { height: 40px; background-image: url("..${path}") }`;
+  const html = `<style>${css}</style><div></div>`;
+  const fetcher = async (url: string): Promise<SafeResponse> => url === base + "/page"
+    ? { url, status: 200, headers: { "content-type": "text/html" }, body: Buffer.from(html) }
+    : { url, status: 200, headers: { "content-type": "image/png" }, body: Buffer.alloc(0) };
+  const result = await scanPage(base + "/page", fetcher, launchTestBrowser);
+  assert.deepEqual(result.assets.map(asset => asset.url), [base + path]);
+  assert.ok(rebaseCss(css, `${base}/css/main.css`).includes(`url("${base}${path}")`));
+});
+
 test("real Chromium extracts image/srcset/CSS/poster/video/lazy and blocks internal requests", { timeout: 45000 }, async () => {
   const blocked: string[] = [];
   const html = `<!doctype html><html><head><title>Controlled fixture</title><base href="/assets/"><style>.hero{height:400px;background-image:url('background.svg')}body{min-height:4000px}</style></head><body>
@@ -32,4 +45,18 @@ test("real Chromium extracts image/srcset/CSS/poster/video/lazy and blocks inter
   assert.equal(result.assets.find(asset => asset.name === "live.m3u8")?.kind, "unsupported");
   assert.ok(!result.assets.some(asset => asset.url.includes("127.0.0.1") || asset.url.includes("169.254")));
   assert.ok(blocked.length >= 1);
+});
+
+test("an extensionless HLS or DASH source is detected as a stream from its HTML type", async () => {
+  const html = '<video><source src="/watch?id=1" type="application/vnd.apple.mpegurl"></video>'
+    + '<video><source src="/watch?id=2" type="application/dash+xml"></video>';
+  const pageUrl = "https://fixture.example.com/gallery";
+  const fetcher = async (url: string): Promise<SafeResponse> => ({
+    url, status: 200, headers: { "content-type": "text/html" }, body: Buffer.from(html),
+  });
+  const result = await scanPage(pageUrl, fetcher, launchTestBrowser);
+  assert.deepEqual(result.assets.map(asset => [asset.url, asset.kind]), [
+    ["https://fixture.example.com/watch?id=1", "unsupported"],
+    ["https://fixture.example.com/watch?id=2", "unsupported"],
+  ]);
 });

@@ -82,7 +82,8 @@ export function rebaseCss(css: string, base: string): string {
     if (estimated > limit) throw new AppError("BODY_LIMIT", "CSSの展開後サイズが上限を超えています。", 413);
     return replacement;
   };
-  const rewritten = css.replace(/url\(\s*(['"]?)([^'"\s)]+)\1\s*\)/gi, (all, _quote, value: string) => bound(all, `url(${JSON.stringify(absolute(value))})`))
+  const rewritten = css.replace(/url\(\s*(?:"([^"]+)"|'([^']+)'|([^'"\s)]+))\s*\)/gi,
+    (all, doubleQuoted, singleQuoted, unquoted) => bound(all, `url(${JSON.stringify(absolute(doubleQuoted ?? singleQuoted ?? unquoted))})`))
     .replace(/@import\s+(['"])([^'"]+)\1/gi, (all, _quote, value: string) => bound(all, `@import ${JSON.stringify(absolute(value))}`));
   if (Buffer.byteLength(rewritten) > limit) throw new AppError("BODY_LIMIT", "CSSの展開後サイズが上限を超えています。", 413);
   return rewritten;
@@ -141,6 +142,7 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
   };
   const budget = new ByteBudget(TOTAL_BYTES);
   let requestCount = 0, activeRequests = 0;
+  const waiting: Array<() => void> = [];
   try {
     const fetcher = injectedFetcher ?? createWorkerSafeFetcher();
     const initial = await fetcher(validateUrl(input).href, { maxBytes: 4 * 1024 * 1024, signal: controller.signal, onBytes: budget.consume });
@@ -157,15 +159,20 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
     let usedInitial = false;
     const handle = async (route: ScanRoute) => {
       const request = route.request();
+      if (request.resourceType() === "document" && (usedInitial || !request.isNavigationRequest() || request.url() !== pageUrl)) {
+        await route.abort(); return;
+      }
       requestCount++;
       const inferred = inferKind(request.url());
       if (inferred) add({ url: request.url(), source: "通信", kind: inferred });
-      if (!["GET", "HEAD"].includes(request.method()) || controller.signal.aborted || requestCount > 160 || !budget.remaining || activeRequests >= MAX_ACTIVE_REQUESTS) {
+      if (!["GET", "HEAD"].includes(request.method()) || controller.signal.aborted || requestCount > 160 || !budget.remaining) {
         await route.abort(); return;
       }
       if (["media", "font"].includes(request.resourceType())) { await route.abort(); return; }
-      activeRequests++;
+      if (activeRequests < MAX_ACTIVE_REQUESTS) activeRequests++;
+      else await new Promise<void>(resolve => waiting.push(resolve));
       try {
+        if (controller.signal.aborted || !budget.remaining) { await route.abort(); return; }
         let response: SafeResponse;
         if (!usedInitial && request.isNavigationRequest() && request.url() === pageUrl) { response = initial; usedInitial = true; }
         else {
@@ -176,14 +183,17 @@ export async function scanPage(input: string, injectedFetcher?: typeof safeFetch
         if (kind) add({ url: response.url, source: "通信", kind, mime, bytes: response.body.length });
         // Relative CSS URLs must keep their redirected response's base URL.
         if (response.url !== request.url() && mime.includes("text/css")) response.body = Buffer.from(rebaseCss(response.body.toString("utf8"), response.url));
-        if (request.resourceType() === "document" && request.url() !== pageUrl) { await route.abort(); return; }
         if (response.status >= 300 && response.status < 400) { await route.abort(); return; }
         await route.fulfill({ status: response.status, headers: cleanHeaders(response), body: response.body });
       } catch {
         // A refused request (blocked host, internal address, limit) is never fetched; the page renders without it.
         await route.abort().catch(() => {});
       }
-      finally { activeRequests--; }
+      finally {
+        const next = waiting.shift();
+        if (next) next(); // Pass this slot directly to the next admitted request.
+        else activeRequests--;
+      }
     };
     await context.route("**/*", route => {
       const task = handle(route).catch(() => {});

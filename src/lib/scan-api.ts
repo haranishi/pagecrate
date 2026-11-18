@@ -101,5 +101,5 @@ export async function handleScan(request: Request, deps: ScanRouteDeps): Promise
   // Live scans cannot get here without a usable key (the guard closes first); a demo without one cannot be saved.
   if (!created.ok) return apiErrorResponse(apiError("PAUSED", guarded.demo ? { message: DEMO_UNAVAILABLE } : {}));
   const body = await withTickets(scan, created.codec, { demo: guarded.demo, isBlockedHost, issuedAt });
-  return Response.json(body, { headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
+  return Response.json(body, { headers: { Date: new Date(issuedAt).toUTCString(), "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
 }

@@ -218,6 +218,18 @@ test("video tags other than the encoder and the mechanical items fail; creation_
   assert.deepEqual(warns(run).map(where), ["media-metadata|動画の creation_time（作成日時）|public/tour/shot.mp4|-"], show(run));
 });
 
+test("a zero MP4 vendor ID is empty, while a named vendor is reported", (t) => {
+  const root = makeTree(t, { ...cleanBase(), "public/empty.mp4": "", "public/named.mp4": "" });
+  const probe = join(SHARED, "vendor-probe");
+  writeFileSync(probe, [
+    "#!/usr/bin/env node",
+    'if (process.argv.includes("-version")) console.log("ffprobe version fixture");',
+    'else console.log(JSON.stringify({ streams: [{ tags: { vendor_id: process.argv.at(-1).endsWith("/empty.mp4") ? "[0][0][0][0]" : "TEST" } }] }));',
+  ].join("\n"), { mode: 0o755 });
+  const run = runTool(root, [], { ffprobe: probe });
+  assert.deepEqual(fails(run).map(where), ["media-metadata|動画の vendor_id|public/named.mp4|-"], show(run));
+});
+
 test("an SVG from a drawing tool is a warning to look at, not a failure", (t) => {
   const svg = "<svg xmlns=\"http://www.w3.org/2000/svg\">\n<metadata><rdf:RDF/></metadata>\n<sodipodi:namedview inkscape:zoom=\"1\"/>\n</svg>\n";
   const run = runTool(makeTree(t, { ...cleanBase(), "public/logo.svg": svg }));
@@ -373,7 +385,9 @@ test("the output and the record name the place and the kind, never the value fou
   }
   const run = runTool(root, [], { gitleaks: GITLEAKS });
   assert.equal(run.status, 1, show(run));
-  assert.ok(fails(run).length >= 12, "every planted value is found");
+  // Eleven findings come from the built-in checks. The Slack hook and video comment need the optional tools.
+  const expected = 11 + Number(GITLEAKS !== null) + Number(HAS_FFMPEG);
+  assert.ok(fails(run).length >= expected, "every planted value detectable with the installed tools is found");
   const secrets = [...Object.values(values), ...Object.values(FAKE), FAKE.email.split("@")[0]];
   for (const [channel, text] of [["stdout", run.stdout], ["stderr", run.stderr], ["record", run.recordText]]) {
     for (const [index, value] of secrets.entries()) assert.ok(!text.toLowerCase().includes(value.toLowerCase()), `${channel} must not contain planted value #${index}`);
